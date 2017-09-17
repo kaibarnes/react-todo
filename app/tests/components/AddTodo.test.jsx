@@ -1,10 +1,10 @@
-var expect = require("expect");
-var React = require("react");
-var ReactDOM = require("react-dom");
-var TestUtils = require("react-addons-test-utils");
-var $ = require("jQuery");
+import expect from "expect";
+import React from "react";
+import ReactDOM from "react-dom";
+import TestUtils from "react-addons-test-utils";
+import $ from "jQuery";
 
-var {AddTodo} = require("AddTodo");
+const {AddTodo} = require("AddTodo");
 
 describe("AddTodo", () => {
   it("should exist", () => {
@@ -12,14 +12,14 @@ describe("AddTodo", () => {
   });
 
   it("should dispatch ADD_TODO when valid todo text", () => {
-    var todoText = "Check mail";
-    var action = {
+    const todoText = "Check mail";
+    const action = {
       type: "ADD_TODO",
       text: todoText
     }
-    var spy = expect.createSpy();
-    var addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy} />);
-    var $el = $(ReactDOM.findDOMNode(addTodo));
+    const spy = expect.createSpy();
+    const addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy} />);
+    const $el = $(ReactDOM.findDOMNode(addTodo));
 
     addTodo.refs.todoText.value = todoText;
     TestUtils.Simulate.submit($el.find("form")[0]);
@@ -28,9 +28,9 @@ describe("AddTodo", () => {
   });
 
   it("should not dispatch ADD_TODO when invalid todo text", () => {
-    var spy = expect.createSpy();
-    var addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy} />);
-    var $el = $(ReactDOM.findDOMNode(addTodo));
+    const spy = expect.createSpy();
+    const addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy} />);
+    const $el = $(ReactDOM.findDOMNode(addTodo));
 
     addTodo.refs.todoText.value = "";
     TestUtils.Simulate.submit($el.find("form")[0]);
